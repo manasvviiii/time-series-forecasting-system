@@ -103,6 +103,14 @@ class ModelTrainer:
         try:
             logger.info("Beginning model selection process")
             
+            # Check if TensorFlow is available for LSTM
+            tensorflow_available = False
+            try:
+                import tensorflow  # noqa: F401
+                tensorflow_available = True
+            except ImportError:
+                logger.warning("TensorFlow not available. Skipping LSTM model training.")
+            
             # Train all models
             models_to_train = [
                 (SARIMATrainer, "SARIMA", {
@@ -118,15 +126,20 @@ class ModelTrainer:
                     'learning_rate': self.config.xgboost.learning_rate,
                     'max_depth': self.config.xgboost.max_depth,
                     'random_state': self.config.xgboost.random_state
-                }),
-                (LSTMTrainer, "LSTM", {
-                    'lstm_units': self.config.lstm.lstm_units,
-                    'dropout': self.config.lstm.dropout,
-                    'epochs': self.config.lstm.epochs,
-                    'batch_size': self.config.lstm.batch_size,
-                    'random_state': self.config.lstm.random_state
                 })
             ]
+            
+            # Add LSTM only if TensorFlow is available
+            if tensorflow_available:
+                models_to_train.append(
+                    (LSTMTrainer, "LSTM", {
+                        'lstm_units': self.config.lstm.lstm_units,
+                        'dropout': self.config.lstm.dropout,
+                        'epochs': self.config.lstm.epochs,
+                        'batch_size': self.config.lstm.batch_size,
+                        'random_state': self.config.lstm.random_state
+                    })
+                )
             
             results: Dict[str, float] = {}
             
