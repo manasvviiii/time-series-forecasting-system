@@ -215,32 +215,7 @@ forecasting/
 
 ---
 
-## 📅 Project Timeline
 
-| Phase | Deliverables |
-|---|---|
-| Week 1 — Foundation | Structured logging, custom exceptions, centralized config, removed all `print()` |
-| Weeks 1–2 — Architecture | ABC pattern, 4 concrete trainers, 100% type hints |
-| Week 2 — Performance | `ProcessPoolExecutor`, LSTM memory optimisation, 4–8× speedup |
-| Weeks 2–3 — API | Joblib persistence, FastAPI service, Pydantic validation, real predictions |
-| Week 3 — Docs & Testing | 6 markdown guides, full component testing |
-
-| Metric | Result |
-|---|---|
-| Type hint coverage | 100% |
-| `print` statements | 10+ → **0** |
-| Speedup | **4–8×** |
-| New modules created | 6 |
-
----
-
-## 🗓️ Roadmap
-
-**Short term** — unit tests (`pytest`), Docker container, GitHub Actions CI/CD  
-**Medium term** — model versioning, retraining scheduler, Prometheus + Grafana monitoring  
-**Long term** — Optuna hyperparameter tuning, ensemble methods, MLflow model registry
-
----
 
 <div align="center">
 
