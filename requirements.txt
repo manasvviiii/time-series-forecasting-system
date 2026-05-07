@@ -1,0 +1,13 @@
+pandas
+openpyxl
+scikit-learn
+xgboost
+prophet
+statsmodels
+tensorflow
+fastapi
+uvicorn
+numpy
+joblib
+holidays
+pydantic
